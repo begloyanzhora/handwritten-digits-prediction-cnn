@@ -11,7 +11,7 @@ model = init('model/model.json','model/model.h5')
 app = Flask(__name__)
 
 def convert_image(imgData1):
-    imgstr = re.search(b'base64,(.*)',imgData1).group(1) #print(imgstr)
+    imgstr = re.search(b'base64,(.*)',imgData1).group(1)
     with open('output.png','wb') as output:
         output.write(base64.b64decode(imgstr))
 
