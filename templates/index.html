@@ -32,7 +32,6 @@
       "
     ></canvas>
     <div id="debug" style="margin: 65px; margin-top: 100px">
-      <input type="button" id="clearButton" value="Clear" />
       <br />
       <span
         style="
@@ -46,7 +45,7 @@
 
     <div
       style="
-        margin-left: 175px;
+        margin-left: 147px;
         margin-top: 460px;
         float: left;
         position: absolute;
@@ -57,11 +56,12 @@
           Predict
         </span></a
       >
+      <input type="button" id="clearButton" value="Clear" />
     </div>
     <div>
       <h1
         id="result"
-        style="margin-right: 20px; margin-top: 300px; float: left"
+        style="margin-right: 20px; margin-top: 300px; float: left; z-index: 1; color: #4daf7c;"
       >
         <span> </span>
       </h1>
@@ -72,15 +72,14 @@
     <script src="{{ url_for('static',filename='index.js') }}"></script>
     <script type="text/javascript">
       $(".myButton").click(function () {
-        var $SCRIPT_ROOT = "http://localhost:5000";
         var canvasObj = document.getElementById("canvas");
         var img = canvasObj.toDataURL();
         $.ajax({
           type: "POST",
-          url: $SCRIPT_ROOT + "/predict/",
+          url: "/predict",
           data: img,
           success: function (data) {
-            $("#result").text(" Predicted Output: " + data);
+            $("#result").text("You have written: " + data[1]);
           },
         });
       });
