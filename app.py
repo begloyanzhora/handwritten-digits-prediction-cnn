@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 from model.load import *
 from PIL import Image
 
-model = init('model/model.json','model/model.h5')
+model = init('model/model.h5')
 
 app = Flask(__name__)
 
@@ -29,6 +29,8 @@ def predict():
     x = np.array(x)[:,:,0]
     x = np.invert(x)
     x = x.reshape(1,28,28,1)
+    x = x.astype('float32')
+    x /= 255
 
     out = model.predict(x)
     response = np.array_str(np.argmax(out, axis=-1))
