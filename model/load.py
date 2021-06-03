@@ -1,4 +1,4 @@
-from tensorflow.keras.models import model_from_json, load_model
+from tensorflow.keras.models import load_model
 
 def init(h5_path):
     model = load_model(h5_path)
